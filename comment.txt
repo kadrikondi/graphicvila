@@ -1,0 +1,18 @@
+user model
+name 
+email
+pass
+
+occupation
+phone
+address
+
+graphic model
+ name or captionname
+ inspiration or idea behind d design(inspName or ideaName),
+ designer name.
+
+
+ summary 
+ user will register and be able to upload graphics work  and views other graphics work
+\
