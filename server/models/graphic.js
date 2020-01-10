@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const graphicSchema = new mongoose.Schema({
     caption: String,
@@ -8,4 +8,4 @@ const graphicSchema = new mongoose.Schema({
 
 const graphicModel = mongoose.model('graphics', graphicSchema)
 
-export default graphicModel;
+module.exports = graphicModel;

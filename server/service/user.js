@@ -1,7 +1,7 @@
-import User from '../models/user'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-import config from '../config/config'
+const User = require('../models/user')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const config = require('../config/config')
 
 class UserService {
 
@@ -27,20 +27,22 @@ class UserService {
 
     static async loginUser(email, password) {
         try {
-            const user = await User.findOne({email: email })
-            if(!user) {
-                return null
-            }
-            else {
-                const passwordisValid = bcrypt.compareSync(user.password, password)
-                if(!passwordisValid) {
+            const user = await User.findOne({email: email})
+                if(!user){
                     return null
                 }
-                else {
-                    const token = await jwt.sign({_id: user.id, name: user.name}, config.UserSecret)
-                    return token
+                else{
+                    
+                        const passwordIsvalid = bcrypt.compareSync(password, user.password)
+                        if(!passwordIsvalid){
+                            return null
+                        }
+                        else{
+                            const token = await jwt.sign({id:user.id, name:user.name, email:user.email}, config.UserSecret)
+                            //const id = user._id
+                            return token
+                        }
                 }
-            }
         } catch (e) {
             throw e
         }
@@ -70,10 +72,17 @@ class UserService {
         }
     }
 
-    static async updateUser(id) {
+    static async updateUser(id, data) {
         try {
             const info = await User.findOne({_id: id })
             if(info) {
+                const { name, email, occupation, address, phone} = data
+                info.name = name || info.name
+                info.email = email || info.email
+                info.occupation = occupation || info.occupation
+                info.address = address || info.address
+                info.phone = phone || info.phone
+                await info.save()
                 return info
             }
             return null
@@ -83,4 +92,4 @@ class UserService {
     }
 }
 
-export default UserService;
+module.exports = UserService;
