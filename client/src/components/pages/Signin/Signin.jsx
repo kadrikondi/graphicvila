@@ -22,7 +22,7 @@ class Signin extends Component {
     e.preventDefault();
 
     this.setState({ isLoading: true });
-    fetch("/loginn", {
+    fetch("/api/v1/user/login", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -39,12 +39,12 @@ class Signin extends Component {
 
         this.setState({ isLoading: false });
         this.setState({ info: res.message });
-      
-        if (res.message === "Login successful") {
+
+        if (res.message === "login was successful") {
           window.localStorage.setItem("userId", res.id);
           window.localStorage.setItem("token", JSON.stringify(res.token));
 
-          this.props.history.push("/userconfirm");
+          this.props.history.push("/dash");
         }
       })
       .catch(err => {

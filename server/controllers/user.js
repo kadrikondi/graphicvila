@@ -47,9 +47,11 @@ class UserController {
                     })
                 }
                 else {
+                    console.log(user)
                     return res.status(200).json({
                         message: 'login was successful',
                         token: user
+
                     })
                 }
             }
@@ -73,7 +75,7 @@ class UserController {
 
     static async registerUser(req, res) {
         try {
-            if(!req.body.name || !req.body.email || !req.body.password || !req.body.address || !req.body.occupation || !req.body.phone) {
+            if(!req.body.name || !req.body.email || !req.body.password || !req.body.gender) {
                 return res.status(400).json({
                     message: 'Please fill in all fields'
                 })
@@ -84,7 +86,7 @@ class UserController {
                 const info = await UserService.registerUser(data)
                 info.password = hash
                 await info.save()
-                return res.status(201).json({
+                return res.status(201).json({ message:"created",
                     info: info
                 })
             }

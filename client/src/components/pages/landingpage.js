@@ -6,6 +6,7 @@ import Img4 from '../asset/img/p4.jpg'
 import Img5 from '../asset/img/p5.jpg'
 import Img6 from '../asset/img/p6.jpg'
 import Hero from '../asset/img/hero-img.png'
+import Landi from '../asset/img/book.jpg'
 import   {Link} from 'react-router-dom'
 import Customerheader from './dashboard/customerheader';
 
@@ -30,15 +31,19 @@ export class landingpage extends Component {
         <div className="container">
           <div className="row fullscreen align-items-center justify-content-between">
             <div className="col-lg-6 col-md-6 banner-left">
-              <h6>This is me</h6>
-              <h1>Philip Gilbert</h1>
-              <p>
-                You will begin to realise why this exercise is called the Dickens Pattern with reference to the ghost showing Scrooge some different futures.
-              </p>
-              <a href="#" className="primary-btn text-uppercase">discover now</a>
+            
+              <h2> WELCOME TO GRAPHICVILA </h2>
+              <h3>
+              We are a creative group
+                of people who design
+              influential brands and
+              digital experiences.
+              </h3>
+              <a href="/signin" className="primary-btn text-uppercase">discover now</a>
             </div>
-            <div className="col-lg-6 col-md-6 banner-right d-flex align-self-end">
-              <img className="img-fluid" src={Hero} alt="" />
+            <div className="col-lg-6 col-md-6 banner-right d-flex align-self-end mb-5">
+             <img className="img-fluid" src={Landi} alt="" /> 
+              {/* <img className="img-fluid" src={Hero} alt="" /> */}
             </div>
           </div>
         </div>					

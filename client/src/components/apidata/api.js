@@ -44,7 +44,7 @@ export async function getUserData(id) {
 
 export async function userProfile(id) {
     try {
-        const profile = await axios.get(`http://localhost:8090/user/${id}`);
+        const profile = await axios.get(`http://localhost:3001/api/v1/user/${id}`);
         return profile.data.info
     } catch (error) {
         return error.message

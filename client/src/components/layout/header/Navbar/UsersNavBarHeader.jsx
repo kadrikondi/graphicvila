@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getOneUserA } from "../../../apidata/api";
-
+import Logo from '../../../asset/img/logo.png'
 
 import { userProfile } from "../../../apidata/api";
 import { Link } from "react-router-dom";
@@ -63,7 +63,7 @@ export default class UsersNavBarHeader extends Component {
             fontWeight: "bold"
           }}
         >
-         GraphicsVila&#x25d6;
+        <img src={Logo} alt=""/>
         </a>
         <button
           className="navbar-toggler"

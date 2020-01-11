@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Logo from '../../../asset/img/logo.png'
+import Logo from "../../../asset/img/logo.png";
 import { Link } from "react-router-dom";
 
 export class VisitorNavbar extends Component {
@@ -18,10 +18,10 @@ export class VisitorNavbar extends Component {
               <nav id="nav-menu-container">
                 <ul className="nav-menu">
                   <li>
-                    <a href="index.html">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li>
-                    <a href="about.html">About</a>
+                    <a href="/about">About</a>
                   </li>
                   <li>
                     <a href="/register">SignUp</a>
@@ -29,9 +29,6 @@ export class VisitorNavbar extends Component {
                   <li>
                     <a href="/signin">SignIn</a>
                   </li>
-
-
-
                 </ul>
               </nav>
               {/* #nav-menu-container */}

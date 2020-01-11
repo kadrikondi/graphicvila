@@ -19,6 +19,7 @@ export default class Leftsidebar extends Component {
   async componentWillMount(){
     const id = await JSON.parse(localStorage.getItem("userId"))
     this.setState({id:id})
+    console.log(id)
     const token = JSON.parse(localStorage.getItem('token'))
     if (token) {
       

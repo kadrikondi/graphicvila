@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    occupation: String,
+    gender: String,
     phone: String,
     address: String,
     graphics: [{ type: mongoose.Schema.Types.ObjectId, ref: 'graphics'}]

@@ -22,7 +22,7 @@ router.get('/api/v1/users', _user2.default.getAllusers);
 router.get('/api/v1/user/:id', _user2.default.getSingleUser);
 router.post('/api/v1/user/login', _user2.default.loginUser);
 router.post('/api/v1/user/register', _user2.default.registerUser);
-router.post('/api/v1/user/login', _user2.default.loginUser);
+// router.post('/api/v1/user/login', _user2.default.loginUser);
 
 exports.default = router;
 //# sourceMappingURL=index.js.map

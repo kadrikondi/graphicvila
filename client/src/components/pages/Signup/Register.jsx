@@ -26,6 +26,7 @@ class Register extends Component {
     };
     this.handleName = this.handleName.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
+       this.handlePassword1 = this.handlePassword1.bind(this);
     this.handleGender = this.handleGender.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
    
@@ -37,40 +38,36 @@ class Register extends Component {
   async handleSubmit(e) {
     e.preventDefault();
     console.log(this.state.password)
+    if(this.state.password!==this.state.password1){
+      this.setState({info:'password not match type same password'})
+    }
     await this.setState({ isLoading: true });
 
 
-    fetch("/register", {
+    fetch("/api/v1/user/register", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-     
         name: this.state.name,
         email: this.state.email,
         password: this.state.password,
         gender: this.state.gender,
-        phone: this.state.phone,
-  
-        
+     
       })
     })
-      // axios.post(`/register`, userData)
+    
       .then(res => res.json())
       .then(res => {
-        console.log(res.message);
+        console.log(res);
 
         this.setState({ isLoading: false });
         this.setState({ info: res.message });
-        if (
-          res.data.message === 'created'
-        ) {
-         
+        if (res.message === "created") {
           this.props.history.push("/signin");
-        } 
-        
+        }
       })
       .catch(err => {
         console.log(err);
@@ -200,7 +197,7 @@ class Register extends Component {
             <div className="form-group">
               {/* <i class="fa fa-lock prefix"></i> */}
               <label for="form4">
-                <span className="fa fa-lock" />  Password1
+                <span className="fa fa-lock" /> Confirm  Password
                 </label>
               <input
                 type="password"

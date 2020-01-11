@@ -14,7 +14,7 @@ var userSchema = new _mongoose2.default.Schema({
     name: String,
     email: String,
     password: String,
-    occupation: String,
+    gender: String,
     phone: String,
     address: String,
     graphics: [{ type: _mongoose2.default.Schema.Types.ObjectId, ref: 'graphics' }]

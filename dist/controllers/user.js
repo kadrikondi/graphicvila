@@ -226,7 +226,7 @@ var UserController = function () {
                             case 0:
                                 _context5.prev = 0;
 
-                                if (!(!req.body.name || !req.body.email || !req.body.password || !req.body.address || !req.body.occupation || !req.body.phone)) {
+                                if (!(!req.body.name || !req.body.email || !req.body.password ||  !req.body.gender )) {
                                     _context5.next = 5;
                                     break;
                                 }

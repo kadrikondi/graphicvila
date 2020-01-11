@@ -29,8 +29,6 @@ export default class dashboard extends Component {
     //   });
 
     // setTimeout()
-localStorage.setItem('token', 'rgfdfdfdfgdfsg')
-    window.localStorage.setItem("userId", 'kondi');
     const id = await window.localStorage.getItem("userId");
     if (id) {
       await this.setState({ id: id });

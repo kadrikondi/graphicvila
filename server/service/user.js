@@ -39,7 +39,7 @@ class UserService {
                         }
                         else{
                             const token = await jwt.sign({id:user.id, name:user.name, email:user.email}, config.UserSecret)
-                            //const id = user._id
+                            // const id = user._id
                             return token
                         }
                 }

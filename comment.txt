@@ -6,11 +6,13 @@ pass
 occupation
 phone
 address
+photo
 
 graphic model
  name or captionname
  inspiration or idea behind d design(inspName or ideaName),
  designer name.
+ graphiclink
 
 
  summary 
