@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const graphicSchema = new mongoose.Schema({
     caption: String,
     ideaname: String,
-    name: String
+    name: String,
+    link: String
 })
 
 const graphicModel = mongoose.model('graphics', graphicSchema)

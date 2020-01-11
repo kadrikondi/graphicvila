@@ -1,8 +1,6 @@
 const UserService = require('../service/user')
 const bcrypt = require('bcryptjs')
-const User = require('../models/user')
-const jwt = require('jsonwebtoken')
-const config = require('../config/config')
+
 
 class UserController {
 
