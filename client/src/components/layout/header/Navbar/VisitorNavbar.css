@@ -1,0 +1,32 @@
+.Navtext {
+    /* background: transparent; */
+  
+    background-color: #022B69;
+
+}
+
+.navbar {
+    box-shadow: 0px 0px 0px #fff !important;
+
+}
+
+.navfloatR {
+    margin-left: 300px;
+}
+
+
+.nav-link {
+    color: #ffffff;
+    padding: 8px;
+    margin-left: 20px;
+}
+
+.navbar-nav {
+    margin-left: 50%;
+}
+
+@media screen and (max-width:600px) {
+    .navfloatR {
+        margin-left: inherit;
+    }
+}
