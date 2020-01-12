@@ -2,16 +2,15 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
- cors = require('cors')
+const cors = require('cors')
 const routes = require('./routes/index')
 
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-
- app.use(cors())
 app.use('/', routes)
 const port = 3001 || process.env.PORT
 

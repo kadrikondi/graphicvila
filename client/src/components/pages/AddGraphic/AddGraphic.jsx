@@ -13,8 +13,7 @@ class AddGraphic extends Component {
       caption: "",
       ideaname: "",
       name: "",
-      file: "",
-      // projectdoc:'',
+      photo: "",
       notif: "",
       isLoading: false,
       error: false
@@ -25,38 +24,35 @@ class AddGraphic extends Component {
     this.handleFile = this.handleFile.bind(this);
   }
 
-  async handlePost(id) {
-    console.log(id + "kkkn");
+  async handlePost(e) {
+    e.preventDefault()
+    let id = await window.localStorage.getItem("userId")
     const formdata = new FormData();
-    formdata.append("file", this.state.file);
+    formdata.append("photo", this.state.photo);
     formdata.append("name", this.state.name);
     formdata.append("caption", this.state.caption);
     formdata.append("ideaname", this.state.ideaname);
 
-    // axios
-    //   .post(`/api/v1/graphic/post/${id}`, formdata, {
-    //     headers: {
-
-    //       "content-type": "multipart/form-data"
-    //     }
+    axios.post(`/api/v1/graphic/post/${id}`, formdata)
+    .then( res => { console.log(res)})
+    .catch(err => console.log(err.message))
+    // fetch(`http://localhost:3001/api/v1/graphic/post/${id}`, {
+    //   method: "POST",
+    //   // mode: "no-cors",
+    //   headers: {
+    //     Accept: "application/json"
+    //     // "Content-Type": "multipart/form-data"
+    //   },
+    //   body: formdata
+    // })
+    //   .then(response => {
+    //     // alert(response.data);
+    //     console.log(response);
     //   })
-    fetch(`http://localhost:3001/api/v1/graphic/post/${id}`, {
-      method: "POST",
-      // mode: "no-cors",
-      headers: {
-        Accept: "application/json"
-        // "Content-Type": "multipart/form-data"
-      },
-      body: formdata
-    })
-      .then(response => {
-        // alert(response.data);
-        console.log(response);
-      })
-      .catch(err => {
-        console.log(err);
-        //this.setState({error: true})
-      });
+    //   .catch(err => {
+    //     console.log(err);
+    //     //this.setState({error: true})
+    //   });
   }
   handleProject(e) {
     e.preventDefault();
@@ -73,7 +69,7 @@ class AddGraphic extends Component {
     this.setState({ name: e.target.value });
   }
   handleFile(e) {
-    this.setState({ file: e.target.files[0] });
+    this.setState({ photo: e.target.files[0] });
     // console.log(e.target.value + '  oooo')
   }
 
