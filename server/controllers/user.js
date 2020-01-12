@@ -47,10 +47,10 @@ class UserController {
                     })
                 }
                 else {
-                    console.log(user)
                     return res.status(200).json({
                         message: 'login was successful',
-                        token: user
+                        token: user[0],
+                        id: user[1]
 
                     })
                 }

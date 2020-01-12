@@ -12,11 +12,13 @@ class GraphicService {
         }
     }
 
-    static async userPostNewGraphics(id, data) {
+    static async userPostNewGraphics(id, data, file) {
         try {
             await User.findOne({_id: id}, async (err, user) => {
                 await Graphic.create(data, async (err, graphic) => {
                     const graphical = user.graphics
+                    graphic.photo = file
+                    await graphic.save()
                     graphical.push(graphic)
                     await user.save()
                     return graphic

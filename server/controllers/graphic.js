@@ -1,4 +1,5 @@
 const GraphicService = require('../service/graphics')
+const cloudinary = require('cloudinary')
 
 class GraphicController {
     static async getAllGraphics(req, res) {
@@ -24,12 +25,19 @@ class GraphicController {
                     message: 'Please dill in all fiels'
                 })
             }
+            else if(req.file == undefined || req.file == ''){
+                return res.json({message:`Error: No file selected`})
+            }
             else {
+                var image = req.file.path
+                const result = await cloudinary.uploader.upload(image)
+                var imgUrl = result.secure_url
                 const { id } = req.params
                 const data = req.body
-                const info = await GraphicService.userPostNewGraphics(id, data)
+                const info = await GraphicService.userPostNewGraphics(id, data, imgUrl)
                 return res.status(201).json({
-                    info: info
+                    info: info,
+                    message: 'Post uploaded successfully'
                 })
             }
         } catch (e) {

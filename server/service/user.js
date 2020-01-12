@@ -39,8 +39,9 @@ class UserService {
                         }
                         else{
                             const token = await jwt.sign({id:user.id, name:user.name, email:user.email}, config.UserSecret)
-                            // const id = user._id
-                            return token
+                            const id = user._id
+                            const combined = [token, id]
+                            return combined
                         }
                 }
         } catch (e) {
@@ -76,10 +77,10 @@ class UserService {
         try {
             const info = await User.findOne({_id: id })
             if(info) {
-                const { name, email, occupation, address, phone} = data
+                const { name, email, gender, address, phone } = data
                 info.name = name || info.name
                 info.email = email || info.email
-                info.occupation = occupation || info.occupation
+                info.gender = gender || info.gender
                 info.address = address || info.address
                 info.phone = phone || info.phone
                 await info.save()

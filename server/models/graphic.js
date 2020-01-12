@@ -4,7 +4,8 @@ const graphicSchema = new mongoose.Schema({
     caption: String,
     ideaname: String,
     name: String,
-    link: String
+    link: String,
+    photo: String
 })
 
 const graphicModel = mongoose.model('graphics', graphicSchema)
