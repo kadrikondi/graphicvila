@@ -35,7 +35,7 @@ class Projects extends Component{
      }
 
    async componentWillMount(){
-     const id = await JSON.parse(localStorage.getItem("userId"));
+     const id = await localStorage.getItem("userId");
      this.setState({id:id})
      
    }
@@ -106,7 +106,7 @@ return(
     </div> 
        <div className='mt text-center '> 
        
-      <Link to={`addproject/${id}`}> <button className="btn btn-lg btn-primary text-center" style={{ width: '' }}> Upload Your Designs </button></Link>
+      <Link to={`addgraphic/${id}`}> <button className="btn btn-lg btn-primary text-center" style={{ width: '' }}> Upload Your Designs </button></Link>
             
           
           

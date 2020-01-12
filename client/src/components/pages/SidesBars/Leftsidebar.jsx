@@ -17,24 +17,27 @@ export default class Leftsidebar extends Component {
     this.handleprofile= this.handleprofile.bind(this)
   }
   async componentWillMount(){
-    const id = await JSON.parse(localStorage.getItem("userId"))
+    const id = await localStorage.getItem("userId")
+    if(!id){
+      this.props.history.push('/signin') 
+    }
     this.setState({id:id})
-    console.log(id)
+
+  
     const token = JSON.parse(localStorage.getItem('token'))
     if (token) {
       
       const user = await userProfile(id)
-      console.log(user)
-      if (user.message === "jwt expired") {
-        alert('You have to log re-Login')
+       
+      if (!user) {
+   
         this.props.history.push('/signin')
       } else {
-        console.log(user.info)
+       
         this.setState({ name: user.name, avater: user.avater})
 
       }
-      console.log("ok" + user)
-      console.log(this.state.avater + "  avvata")
+    
 
     }
     if (!token) {

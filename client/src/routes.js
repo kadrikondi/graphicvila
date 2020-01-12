@@ -31,7 +31,7 @@ export class routes extends Component {
 
 
            //graphics
-           < Route path = "/addgraphic"
+           < Route path = "/addgraphic/:id"
            strict exact = {
              true
            }

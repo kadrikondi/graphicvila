@@ -18,17 +18,7 @@ export default class dashboard extends Component {
   }
 
   async componentWillMount() {
-    // const user = await userProfile();
-    // console.log(user.message + "  ookkkkk");
-    // if (user.message === "success") {
-    //   // if(user.user==)
-
-    //   await this.setState({
-    //     name: user.name.toLowerCase(),
-    //     userAvater: user.avater
-    //   });
-
-    // setTimeout()
+    
     const id = await window.localStorage.getItem("userId");
     if (id) {
       await this.setState({ id: id });

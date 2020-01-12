@@ -19,7 +19,8 @@ export default class UsersNavBarHeader extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
   async componentWillMount() {
-    const id = await JSON.parse(localStorage.getItem("userId"));
+    const id = await localStorage.getItem("userId");
+   
     if (id) {
       this.setState({ id: id });
     }
@@ -86,14 +87,14 @@ export default class UsersNavBarHeader extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent-4">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
-              <Link className=" nav-link" style={linkcolor} to="/dashboard">
+              <Link className=" nav-link" style={linkcolor} to="/dash">
                 Home
               </Link>
               <span className="sr-only">(current)</span>
             </li>
             <li className="nav-item">
-              <Link className=" nav-link" style={linkcolor} to="/projects">
-                Project feed
+              <Link className=" nav-link" style={linkcolor} to="/graphics">
+               Graphics
               </Link>
             </li>
             <li className="nav-item">

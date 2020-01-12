@@ -4,7 +4,7 @@ const graphicSchema = new mongoose.Schema({
     caption: String,
     ideaname: String,
     name: String,
-    link: String,
+
     photo: String
 })
 

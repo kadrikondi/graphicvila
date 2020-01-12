@@ -43,7 +43,7 @@ router.get('/api/v1/graphics', graphicscontroller.getAllGraphics)
 router.get('/api/v1/graphic/:id', graphicscontroller.getSingleGraphic)
 router.delete('/api/v1/graphic/delete/:id', graphicscontroller.deleteGraphic)
 router.put('/api/v1/graphic/update/:id', graphicscontroller.updateGraphic)
-router.post('/api/v1/graphic/post/:id', upload.single('photo'), graphicscontroller.userPostNewGraphics)
+router.post('/api/v1/graphic/post/:id', upload.single('file'), graphicscontroller.userPostNewGraphics)
 
 
 module.exports = router;

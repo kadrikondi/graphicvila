@@ -55,6 +55,7 @@ class UserService {
             if(info) {
                 return info
             }
+            console.log(info)
             return null
         } catch (e) {
             throw e
