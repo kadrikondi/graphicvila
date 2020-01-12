@@ -35,7 +35,7 @@ router.get('/api/v1/users', usercontroller.getAllusers)
 router.get('/api/v1/user/:id', usercontroller.getSingleUser)
 router.post('/api/v1/user/login', usercontroller.loginUser)
 router.post('/api/v1/user/register', usercontroller.registerUser)
-router.put('/api/v1/user/update/:id', usercontroller.updateUser)
+router.put('/api/v1/user/update/:id', upload.single('photo'), usercontroller.updateUser)
 router.delete('/api/v1/user/delete/:id', usercontroller.deletUser)
 
 //graphics routes

@@ -22,11 +22,11 @@ class GraphicController {
         try {
             if(!req.body.name || !req.body.ideaname || !req.body.caption) {
                 return res.status(400).json({
-                    message: 'Please dill in all fiels'
+                    message: 'Please fill in all fiels'
                 })
             }
             else if(req.file == undefined || req.file == ''){
-                return res.json({message:`Error: No file selected`})
+                return res.status(400).json({message:`Error: No file selected`})
             }
             else {
                 var image = req.file.path

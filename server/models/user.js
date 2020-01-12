@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     gender: String,
     phone: String,
     address: String,
+    photo: String,
     graphics: [{ type: mongoose.Schema.Types.ObjectId, ref: 'graphics'}]
 })
 
