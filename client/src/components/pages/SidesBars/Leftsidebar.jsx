@@ -15,6 +15,7 @@ export default class Leftsidebar extends Component {
       avater:''
     }
     this.handleprofile= this.handleprofile.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
   async componentWillMount(){
     const id = await localStorage.getItem("userId")
@@ -45,6 +46,15 @@ export default class Leftsidebar extends Component {
     }
     
   }
+
+
+  async handleLogout() {
+    await localStorage.removeItem("token");
+    await window.localStorage.clear();
+    await this.setState({ usertoken: null });
+  }
+
+
   async handleprofile(){
     const user = await userProfile(this.props.match.params.id)
     console.log(user)
@@ -119,7 +129,7 @@ export default class Leftsidebar extends Component {
                     <li className="list-group-item" style={sidebarStyle.listItem} > <Link to="/addgraphic" className="list-link" style={sidebarStyle.listLink} ><i className="fa fa-camera"></i>Upload Graphics </Link> </li>
                     <li className="list-group-item" style={sidebarStyle.listItem}><Link to="/graphics" className="list-link" style={sidebarStyle.listLink} > <i className="fa fa-road "></i> Graphics </Link> </li>
             <li className="list-group-item" style={sidebarStyle.listItem}><a href="#" className="list-link" style={sidebarStyle.listLink} > <i className="fa fa-road "></i> Setting </a> </li>
-            <li className="list-group-item" style={sidebarStyle.listItem}><Link to="/dashboard" className="list-link" style={sidebarStyle.listLink} > <i className="fa fa-road "></i>Logout </Link> </li>
+            <li className="list-group-item" style={sidebarStyle.listItem}><Link to="/" className="list-link" style={sidebarStyle.listLink} onClick= {this.handleLogout} > Logout </Link> </li>
           </ul>
         </div>
       </div>

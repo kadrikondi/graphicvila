@@ -13,7 +13,6 @@ class AddGraphic extends Component {
       caption: "",
       ideaname: "",
       name: "",
-
       file: "",
       // projectdoc:'',
       notif: "",
@@ -34,10 +33,24 @@ class AddGraphic extends Component {
     formdata.append("caption", this.state.caption);
     formdata.append("ideaname", this.state.ideaname);
 
-    await axios
-      .post(`/api/v1/graphic/post/${id}`, FormData)
+    // axios
+    //   .post(`/api/v1/graphic/post/${id}`, formdata, {
+    //     headers: {
+
+    //       "content-type": "multipart/form-data"
+    //     }
+    //   })
+    fetch(`http://localhost:3001/api/v1/graphic/post/${id}`, {
+      method: "POST",
+      // mode: "no-cors",
+      headers: {
+        Accept: "application/json"
+        // "Content-Type": "multipart/form-data"
+      },
+      body: formdata
+    })
       .then(response => {
-        alert(response.data);
+        // alert(response.data);
         console.log(response);
       })
       .catch(err => {
@@ -152,6 +165,7 @@ class AddGraphic extends Component {
 
                     <input
                       type="file"
+                      name="file"
                       className="form-control"
                       onChange={this.handleFile}
                     />
