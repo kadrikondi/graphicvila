@@ -1,6 +1,6 @@
 const UserService = require('../service/user')
 const bcrypt = require('bcryptjs')
-
+const cloudinary = require('cloudinary')
 
 class UserController {
 
@@ -22,7 +22,8 @@ class UserController {
             const { id } = req.params
             const info = await UserService.getSingleUser(id)
             return res.status(200).json({
-                info: info
+                info: info[0],
+                graphics: info[1]
             })
         } catch (e) {
             return res.status(500).json({
@@ -99,9 +100,12 @@ class UserController {
 
     static async updateUser(req, res) {
         try {
+            var image = req.file.path
+            const result = await cloudinary.uploader.upload(image)
+            var imgUrl = result.secure_url
             const { id } = req.params
             const data = req.body
-            const info = await UserService.updateUser(id, data)
+            const info = await UserService.updateUser(id, data, imgUrl)
             return res.status(200).json({
                 info: info
             })

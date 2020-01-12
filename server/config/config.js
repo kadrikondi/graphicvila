@@ -1,6 +1,6 @@
 module.exports = {
     UserSecret: "kjfhjfbnhjfjhjfdjkkjdfnj",
-    cloud_name: '',
-    api_key: '',
-    api_secret: ''
+    cloud_name: 'oluwapelumi',
+    api_key: 595673435728515,
+    api_secret: 'XvmFbIWnx-psZjTw9uP9bJK0Acs'
 };

@@ -51,11 +51,10 @@ class UserService {
 
     static async getSingleUser(id) {
         try {
-            const info = await User.findOne({_id: id })
-            if(info) {
-                return info
-            }
-            return null
+            const info = await User.findById(id).populate("graphics")
+            const user_graphics_details = info.graphics
+            const combined_info = [info, user_graphics_details]
+            return combined_info
         } catch (e) {
             throw e
         }
@@ -73,7 +72,7 @@ class UserService {
         }
     }
 
-    static async updateUser(id, data) {
+    static async updateUser(id, data, file) {
         try {
             const info = await User.findOne({_id: id })
             if(info) {
@@ -83,6 +82,7 @@ class UserService {
                 info.gender = gender || info.gender
                 info.address = address || info.address
                 info.phone = phone || info.phone
+                info.photo = file || info.photo
                 await info.save()
                 return info
             }
