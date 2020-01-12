@@ -11,6 +11,7 @@ cloudinary.config({
     api_key : config.api_key,
     api_secret : config.api_secret
 })
+console.log(config.api_key + ' api key')
 const storage = multer.diskStorage({
     filename:function(req, file, cb){
         cb(null, Date.now()+file.originalname)
