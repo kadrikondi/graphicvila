@@ -1,40 +1,29 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var cors = require('cors');
+var routes = require('./routes/index');
 
-var _express = require('express');
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
-var _express2 = _interopRequireDefault(_express);
-
-var _bodyParser = require('body-parser');
-
-var _bodyParser2 = _interopRequireDefault(_bodyParser);
-
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-var _index = require('./routes/index');
-
-var _index2 = _interopRequireDefault(_index);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var app = (0, _express2.default)();
-
-
-app.use(_bodyParser2.default.json());
-app.use(_bodyParser2.default.urlencoded({ extended: true }));
-app.use('/', _index2.default);
-var port = 7000 || process.env.PORT;
+app.use('/', routes);
+var port = 3001 || process.env.PORT;
 
 app.listen(port, function () {
     console.log('Server spinned up on port ' + port);
 });
 
-_mongoose2.default.connect('mongodb://localhost:12707/Graphicvila');
+mongoose.connect('mongodb://localhost:27017/Graphicvila', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
-exports.default = app;
+module.exports = app;
 //# sourceMappingURL=app.js.map
