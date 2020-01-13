@@ -223,15 +223,16 @@ var GraphicController = function () {
         key: 'deleteGraphic',
         value: function () {
             var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(req, res) {
-                var id, info;
+                var _id, info;
+
                 return regeneratorRuntime.wrap(function _callee5$(_context5) {
                     while (1) {
                         switch (_context5.prev = _context5.next) {
                             case 0:
                                 _context5.prev = 0;
-                                id = req.params.id;
+                                _id = req.params._id;
                                 _context5.next = 4;
-                                return UserService.deleteGraphic(id);
+                                return UserService.deleteGraphic(_id);
 
                             case 4:
                                 info = _context5.sent;

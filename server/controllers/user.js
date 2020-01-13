@@ -107,7 +107,8 @@ class UserController {
             const data = req.body
             const info = await UserService.updateUser(id, data, imgUrl)
             return res.status(200).json({
-                info: info
+                info: info,
+                message:'profile updated'
             })
         } catch (e) {
             return res.status(500).json({

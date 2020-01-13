@@ -57,7 +57,7 @@ export default class UsersNavBarHeader extends Component {
       <div className="navbar navbar-expand-sm  mb-5" style={style}>
         <a
           className="navbar-brand ml-5  primary"
-          href="/"
+          href="/dash"
           style={{
             fontSize: "1.5em",
             color: "",
@@ -97,11 +97,7 @@ export default class UsersNavBarHeader extends Component {
                Graphics
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link " style={linkcolor} to="/userdash">
-                Dashboard
-              </Link>
-            </li>
+           
 
             <li className="nav-item dropdown">
               <Link

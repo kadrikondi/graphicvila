@@ -4,277 +4,250 @@ import {getSingleUser} from '../../apidata/api'
 import "../Signup/Signup.css"
 import axios from 'axios'
 import Customerheader from './customerheader';
+import Leftsidebar from '../SidesBars/Leftsidebar';
 
 
 export default class updateProfile extends Component {
-    constructor() {
-        super();
-        this.state = {
-          fname: "",
-          lname: "",
-          email: "",
-          password: "",
-          gender: "",
-          password1: "",
-          phone: "",
-          bdate: "",
-          city: "",
-          address: "",
-          state: "",
-          country:'',
-          info: "",
-          id_card:'',
-          isLoading: false,
-          photo:""
-        };
-    
-        this.handleEmail = this.handleEmail.bind(this);
-        this.handleFirstName = this.handleFirstName.bind(this);
-        this.handleState = this.handleState.bind(this);
-        this.handlePhone = this.handlePhone.bind(this);
-        this.handleLastName = this.handleLastName.bind(this);
-        this.handleCity = this.handleCity.bind(this);
-        this.handleDateOfBirth = this.handleDateOfBirth.bind(this);
-        // this.handlePassword = this.handlePassword.bind(this);
-        this.handleAddress = this.handleAddress.bind(this);
-        this.handleCountry = this.handleCountry.bind(this)
-      }
-      async componentDidMount(){
-        const user = await getSingleUser(this.props.match.params.id)
-        this.setState({fname:user.info.fname, lname:user.info.lname, phone:user.info.phone, city:user.info.city, country:user.info.country, state:user.info.state, address:user.info.address, email:user.info.email, bdate:user.info.bdate})
-        console.log(user)
-      }
-    handleFirstName(e) {
-        this.setState({ fname: e.target.value });
-      }
-      handleEmail(e) {
-        this.setState({ email: e.target.value });
-      }
-      handleLastName(e) {
-        this.setState({ lname: e.target.value });
-      }
-      handleState(e) {
-        this.setState({ state: e.target.value });
-      }
-      handleCountry(e) {
-        this.setState({ country: e.target.value });
-      }
-      handleAddress(e) {
-        this.setState({ address: e.target.value });
-      }
-      handleCity(e) {
-        this.setState({ city: e.target.value });
-      }
-      handleDateOfBirth(e) {
-        this.setState({ bdate: e.target.value });
-      }
-      handlePhone(e) {
-        this.setState({ phone: e.target.value });
-      }
-    
-      updateProfile(id){
-        this.setState({isLoading:true})
-          fetch(`/edit/profile/${id}`, {
-              method:'PUT',
-              headers:{
-                  "Accept":"appliication/json",
-                  "Content-Type":"application/json"
-              },
-              body:JSON.stringify({
-                  fname:this.state.fname,
-                  lname:this.state.lname,
-                  bdate:this.state.bdate,
-                  email:this.state.email,
-                  city:this.state.city,
-                  country:this.state.country,
-                  state:this.state.state,
-                  address:this.state.address,
-                  gender:this.state.gender
-              })
-          })
-          .then(res => res.json())
-          .then( res => {
-            this.setState({isLoading:false})
-              alert(res.message)
-          })
-          .catch(err => {
-            console.log(err)
-            this.setState({ isLoading: false })
-          })
-    
-      }
-      handleChange(e){
-          e.preventDefault()
-          this.updateProfile(this.props.match.params.id)
-      }
-  render() {
-    return (
-      <div>
+                 constructor() {
+                   super();
+                   this.state = {
+                     name: "",
 
-        <Customerheader/>
-        <div className="container">
-          <div className="row">
-    <div className="col-lg-3 col-md-4 col-sm-4">
-   
-    </div>
-         <div className="col-lg-9 col-md-8 col-sm-7">
-        <div className="card mt-5" id="signup" >
-          <div className="card-body">
-            {/* <!--Header--> */}
-            <div className="card-header black-text text-center py-4">
-              <h3>
-                <i className="fa fa-user-plus" /> Update Profile
-              </h3>
-            </div>
+                     email: "",
+                     gender: "",
+                     phone: "",
+                     photo: "",
+                     address: "",
 
-            {/* <!--Body--> */}
-            <fieldset>
-              <legend>Personal Information</legend>
+                     info: "",
 
-              <div className=" form-group input-group mt-4">
-                <label htmlFor="fname">First Name: &nbsp;</label>
-                <input
-                  type="text"
-                  required="required"
-                  className="form-control"
-                  value={this.state.fname}
-                  onChange={this.handleFirstName}
-                />
-              </div>
+                     isLoading: false,
+                     photo: ""
+                   };
 
-              <div className=" input-group form-group ">
-                {/* <i className="fa fa-envelope prefix"></i> */}
-                <label htmlFor="">Last Name:</label>{" "}
-                <input
-                  type="text"
-                  id="form2"
-                  required="required"
-                  className="form-control"
-                  value={this.state.lname}
-                  onChange={this.handleLastName}
-                />
-              </div>
+                   this.handleEmail = this.handleEmail.bind(this);
+                   this.handleGender = this.handleGender.bind(this);
+                   this.handleFirstName = this.handleFirstName.bind(this);
 
-              <div className="  form-group  input-group">
-                {/* <i className="fa fa-envelope prefix"></i> */}
-                <label htmlFor="">Phone No:</label>{" "}
-                <input
-                  type="text"
-                  id="form2"
-                  required="required"
-                  className="form-control"
-                  value={this.state.phone}
-                  onChange={this.handlePhone}
-                />
-              </div>
+                   this.handlePhone = this.handlePhone.bind(this);
 
-              <div className="form-group input-group">
-                {/* <i className="fa fa-envelope prefix"></i> */}
-                <label htmlFor="">Email: &nbsp;</label>{" "}
-                <input
-                  type="email"
-                  id="form2"
-                  required="required"
-                  className="form-control"
-                  value={this.state.email}
-                  onChange={this.handleEmail}
-                />
-              </div>
+                   this.handleAddress = this.handleAddress.bind(this);
+                   this.handleFile = this.handleFile.bind(this);
+                 }
+                 async componentDidMount() {
+                   const user = await getSingleUser(this.props.match.params.id);
+                   console.log("user " + user);
+                   this.setState({
+                     name: user.info.name,
+                     phone: user.info.phone,
+                      photo: user.info.photo,
+                     address: user.info.address,
+                     email: user.info.email,
+                     gender: user.info.gender
+                   });
+                   console.log(user);
+                 }
+                 handleFirstName(e) {
+                   this.setState({ name: e.target.value });
+                 }
+                 handleEmail(e) {
+                   this.setState({ email: e.target.value });
+                 }
+                 handleGender(e) {
+                   this.setState({ gender: e.target.value });
+                 }
 
+                 handleAddress(e) {
+                   this.setState({ address: e.target.value });
+                 }
 
-              <div className="form-group input-group ">
-                {/* <i className="fa fa-envelope prefix"></i> */}
-                <label htmlFor="">Date of birth:</label>{" "}
-                <input
-                  type="date"
-                  id="form2"
-                  required="required"
-                  className="form-control"
-                  value={this.state.bdate}
-                  onChange={this.handleDateOfBirth}
-                />
-              </div>
-            </fieldset>
-            <fieldset>
-              <legend>Contact Information</legend>
+                 handlePhone(e) {
+                   this.setState({ phone: e.target.value });
+                 }
+                 handleFile(e) {
+                   this.setState({ photo: e.target.files[0] });
+                   // console.log(e.target.value + '  oooo')
+                 }
+                 async updateProfile(e) {
+                   e.preventDefault();
+                   this.setState({ isLoading: true });
+                   let id = await window.localStorage.getItem("userId");
+                   const formdata = new FormData();
+                   formdata.append("photo", this.state.photo);
+                   formdata.append("name", this.state.name);
+                   formdata.append("email", this.state.email);
+                   formdata.append("phone", this.state.phone);
+                   formdata.append("address", this.state.address);
+                   formdata.append("gender", this.state.gender);
 
-              <div className="form-group input-group mt-3 ">
-                {/* <i className="fa fa-envelope prefix"></i> */}
-                <label htmlFor="">Address:</label>{" "}
-                <textarea
-                  type="textarea"
-                  id="form2"
-                  className="form-control"
-                  value={this.state.address}
-                  onChange={this.handleAddress}
-                />
-              </div>
+                   axios
+                     .put(`/api/v1/user/update/${id}`, formdata)
+                     // .then( res => { console.log(res)})
+                     // .catch(err => console.log(err.message))
 
-              <div className="form-group input-group ">
-                {/* <i className="fa fa-envelope prefix"></i> */}
-                <label htmlFor="">City:&nbsp; </label>{" "}
-                <input
-                  type="text"
-                  required="required"
-                  id="form2"
-                  className="form-control"
-                  value={this.state.city}
-                  onChange={this.handleCity}
-                />
-              </div>
+                     .then(res => {
+                       this.setState({ isLoading: false });
+                       console.log(res);
+                        let _id =  window.localStorage.getItem("userId");
+                       if(res.status===200){
+                       alert(res.data.message);
 
-              <div className="form-group input-group ">
-                {/* <i className="fa fa-envelope prefix"></i> */}
-                <label htmlFor="">State:</label>{" "}
-                <input
-                  type="text"
-                  id="form2"
-                  required="required"
-                  className="form-control"
-                  value={this.state.state}
-                  onChange={this.handleState}
-                />
-              </div>
+                       console.log(res);
+                       this.props.history.push(`/profile/${_id}`)
+                       }
+                     })
+                     .catch(err => {
+                       this.setState({ isLoading: false });
+                       console.log(err.message);
+                       //this.setState({error: true})
+                     });
+                 }
 
-              <div className="form-group input-group ">
-                {/* <i className="fa fa-envelope prefix"></i> */}
-                <label htmlFor="">Country:</label>{" "}
-                <input
-                  type="text"
-                  id="form2"
-                  required="required"
-                  className="form-control"
-                  value={this.state.country}
-                  onChange={this.handleCountry}
-                />
-              </div>
-            </fieldset>
+                
+                 //  handleChange(e) {
+                 //    e.preventDefault();
+                 //    this.updateProfile(this.props.match.params.id);
+                 //  }
 
-            
+                 render() {
+                   return (
+                     <div>
+                       <Customerheader />
+                       <div className="container">
+                         <div className="row">
+                           <div className="col-lg-3 col-md-4 col-sm-4">
+                             {" "}
+                           <Leftsidebar/>
+                           </div>
+                           <div className="col-lg-9 col-md-8 col-sm-12">
+                             <div className="card mt-" id="signup">
+                               <div className="card-body">
+                                 {/* <!--Header--> */}
+                                 <div className="card-header black-text text-center py-4">
+                                   <h3>
+                                     <i className="fa fa-user-plus" /> Update
+                                     Profile
+                                   </h3>
+                                 </div>
 
-            
+                                 {/* <!--Body--> */}
+                                 <fieldset>
+                                   <legend>Upload Profile pic</legend>
+                                   <img
+                                     src={this.state.photo}
+                                     alt=""
+                                     className="img-fluid"
+                                     style={{ width: "50%", height: "200px" }}
+                                   />
+                                   <div className="form-group">
+                                     <p>select new photo</p>
 
-            <div className="text-center">
-              <button
-                className="btn site-btn sb-gradients mdi mdi-account-plus" type="submit"
-                onClick={this.handleChange.bind(this)}
-              >
-              
-                &nbsp;Update
-                <div style={{ margin: "auto", color: 'white' }}>
-                  {this.state.isLoading ? (
-                    <div id="signuploading" >loading</div>
-                  ) : (<div></div>)}
-                </div>
-              </button>
-            </div>
-            
-          </div>
-        </div>
-            </div>
-        </div>
-        </div>
-      </div>
-    )
-  }
-}
+                                     <input
+                                       type="file"
+                                       name="photo"
+                                       className="form-control"
+                                       onChange={this.handleFile}
+                                     />
+                                   </div>
+                                 </fieldset>
+                                 <fieldset>
+                                   <legend>Personal Information</legend>
+
+                                   <div className=" form-group input-group mt-4">
+                                     <label htmlFor="fname">
+                                       First Name: &nbsp;
+                                     </label>
+                                     <input
+                                       type="text"
+                                       required="required"
+                                       className="form-control"
+                                       value={this.state.name}
+                                       onChange={this.handleFirstName}
+                                     />
+                                   </div>
+
+                                   <div className=" input-group form-group ">
+                                     {/* <i className="fa fa-envelope prefix"></i> */}
+                                     <label htmlFor="">Gender:</label>{" "}
+                                     <input
+                                       type="text"
+                                       id="form2"
+                                       required="required"
+                                       className="form-control"
+                                       value={this.state.gender}
+                                       onChange={this.handleLastName}
+                                     />
+                                   </div>
+
+                                   <div className="  form-group  input-group">
+                                     {/* <i className="fa fa-envelope prefix"></i> */}
+                                     <label htmlFor="">Phone No:</label>{" "}
+                                     <input
+                                       type="text"
+                                       id="form2"
+                                       required="required"
+                                       className="form-control"
+                                       value={this.state.phone}
+                                       onChange={this.handlePhone}
+                                     />
+                                   </div>
+
+                                   <div className="form-group input-group">
+                                     {/* <i className="fa fa-envelope prefix"></i> */}
+                                     <label htmlFor="">Email: &nbsp;</label>{" "}
+                                     <input
+                                       type="email"
+                                       id="form2"
+                                       required="required"
+                                       className="form-control"
+                                       value={this.state.email}
+                                       onChange={this.handleEmail}
+                                     />
+                                   </div>
+                                 </fieldset>
+                                 <fieldset>
+                                   <legend>Contact Information</legend>
+
+                                   <div className="form-group input-group mt-3 ">
+                                     {/* <i className="fa fa-envelope prefix"></i> */}
+                                     <label htmlFor="">Address:</label>{" "}
+                                     <textarea
+                                       type="textarea"
+                                       id="form2"
+                                       className="form-control"
+                                       value={this.state.address}
+                                       onChange={this.handleAddress}
+                                     />
+                                   </div>
+                                 </fieldset>
+
+                                 <div className="text-center">
+                                   <button
+                                     className="btn site-btn btn-primary mdi-account-plus"
+                                     type="submit"
+                                     onClick={this.updateProfile.bind(this)}
+                                   >
+                                     &nbsp;Update
+                                     <div
+                                       style={{
+                                         margin: "auto",
+                                         color: "white"
+                                       }}
+                                     >
+                                       {this.state.isLoading ? (
+                                         <div id="signuploading"></div>
+                                       ) : (
+                                         <div></div>
+                                       )}
+                                     </div>
+                                   </button>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   );
+                 }
+               }

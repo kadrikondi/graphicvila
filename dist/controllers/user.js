@@ -296,7 +296,8 @@ var UserController = function () {
                             case 10:
                                 info = _context6.sent;
                                 return _context6.abrupt('return', res.status(200).json({
-                                    info: info
+                                    info: info,
+                                    message: 'profile updated'
                                 }));
 
                             case 14:

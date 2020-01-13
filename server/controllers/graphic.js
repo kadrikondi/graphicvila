@@ -35,7 +35,7 @@ class GraphicController {
                 const { id } = req.params
                 const data = req.body
                 const info = await GraphicService.userPostNewGraphics(id, data, imgUrl)
-                return res.status(201).json({
+                return res.status(200).json({
                     info: info,
                     message: 'Post uploaded successfully'
                 })
@@ -78,8 +78,8 @@ class GraphicController {
 
     static async deleteGraphic(req, res) {
         try {
-            const { id } = req.params
-            const info = await UserService.deleteGraphic(id)
+            const { _id } = req.params
+            const info = await UserService.deleteGraphic(_id)
         } catch (e) {
             return res.status(500).json({
                 error: e.message
