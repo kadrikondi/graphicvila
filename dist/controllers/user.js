@@ -1,24 +1,14 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _user = require('../service/user');
-
-var _user2 = _interopRequireDefault(_user);
-
-var _bcryptjs = require('bcryptjs');
-
-var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var UserService = require('../service/user');
+var bcrypt = require('bcryptjs');
+var cloudinary = require('cloudinary');
 
 var UserController = function () {
     function UserController() {
@@ -36,7 +26,7 @@ var UserController = function () {
                             case 0:
                                 _context.prev = 0;
                                 _context.next = 3;
-                                return _user2.default.getAllUsers();
+                                return UserService.getAllUsers();
 
                             case 3:
                                 info = _context.sent;
@@ -77,12 +67,13 @@ var UserController = function () {
                                 _context2.prev = 0;
                                 id = req.params.id;
                                 _context2.next = 4;
-                                return _user2.default.getSingleUser(id);
+                                return UserService.getSingleUser(id);
 
                             case 4:
                                 info = _context2.sent;
                                 return _context2.abrupt('return', res.status(200).json({
-                                    info: info
+                                    info: info[0],
+                                    graphics: info[1]
                                 }));
 
                             case 8:
@@ -130,7 +121,7 @@ var UserController = function () {
 
                             case 6:
                                 _context3.next = 8;
-                                return _user2.default.loginUser(email, password);
+                                return UserService.loginUser(email, password);
 
                             case 8:
                                 user = _context3.sent;
@@ -147,7 +138,9 @@ var UserController = function () {
                             case 13:
                                 return _context3.abrupt('return', res.status(200).json({
                                     message: 'login was successful',
-                                    user: user
+                                    token: user[0],
+                                    id: user[1]
+
                                 }));
 
                             case 14:
@@ -187,7 +180,7 @@ var UserController = function () {
                                 _context4.prev = 0;
                                 id = req.params.id;
                                 _context4.next = 4;
-                                return _user2.default.deleteUser(id);
+                                return UserService.deleteUser(id);
 
                             case 4:
                                 info = _context4.sent;
@@ -226,7 +219,7 @@ var UserController = function () {
                             case 0:
                                 _context5.prev = 0;
 
-                                if (!(!req.body.name || !req.body.email || !req.body.password ||  !req.body.gender )) {
+                                if (!(!req.body.name || !req.body.email || !req.body.password || !req.body.gender)) {
                                     _context5.next = 5;
                                     break;
                                 }
@@ -237,9 +230,9 @@ var UserController = function () {
 
                             case 5:
                                 data = req.body;
-                                hash = _bcryptjs2.default.hashSync(req.body.password, 10);
+                                hash = bcrypt.hashSync(req.body.password, 10);
                                 _context5.next = 9;
-                                return _user2.default.registerUser(data);
+                                return UserService.registerUser(data);
 
                             case 9:
                                 info = _context5.sent;
@@ -249,7 +242,7 @@ var UserController = function () {
                                 return info.save();
 
                             case 13:
-                                return _context5.abrupt('return', res.status(201).json({
+                                return _context5.abrupt('return', res.status(201).json({ message: "created",
                                     info: info
                                 }));
 
@@ -278,10 +271,60 @@ var UserController = function () {
 
             return registerUser;
         }()
+    }, {
+        key: 'updateUser',
+        value: function () {
+            var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(req, res) {
+                var image, result, imgUrl, id, data, info;
+                return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                    while (1) {
+                        switch (_context6.prev = _context6.next) {
+                            case 0:
+                                _context6.prev = 0;
+                                image = req.file.path;
+                                _context6.next = 4;
+                                return cloudinary.uploader.upload(image);
+
+                            case 4:
+                                result = _context6.sent;
+                                imgUrl = result.secure_url;
+                                id = req.params.id;
+                                data = req.body;
+                                _context6.next = 10;
+                                return UserService.updateUser(id, data, imgUrl);
+
+                            case 10:
+                                info = _context6.sent;
+                                return _context6.abrupt('return', res.status(200).json({
+                                    info: info,
+                                    message: 'profile updated'
+                                }));
+
+                            case 14:
+                                _context6.prev = 14;
+                                _context6.t0 = _context6['catch'](0);
+                                return _context6.abrupt('return', res.status(500).json({
+                                    error: _context6.t0.message
+                                }));
+
+                            case 17:
+                            case 'end':
+                                return _context6.stop();
+                        }
+                    }
+                }, _callee6, this, [[0, 14]]);
+            }));
+
+            function updateUser(_x11, _x12) {
+                return _ref6.apply(this, arguments);
+            }
+
+            return updateUser;
+        }()
     }]);
 
     return UserController;
 }();
 
-exports.default = UserController;
+module.exports = UserController;
 //# sourceMappingURL=user.js.map

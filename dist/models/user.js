@@ -1,25 +1,19 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+var mongoose = require('mongoose');
 
-var _mongoose = require('mongoose');
-
-var _mongoose2 = _interopRequireDefault(_mongoose);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var userSchema = new _mongoose2.default.Schema({
+var userSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
     gender: String,
     phone: String,
     address: String,
-    graphics: [{ type: _mongoose2.default.Schema.Types.ObjectId, ref: 'graphics' }]
+    photo: String,
+    graphics: [{ type: mongoose.Schema.Types.ObjectId, ref: 'graphics' }]
 });
 
-var exportModel = _mongoose2.default.model('users', userSchema);
-exports.default = exportModel;
+var exportModel = mongoose.model('users', userSchema);
+
+module.exports = exportModel;
 //# sourceMappingURL=user.js.map

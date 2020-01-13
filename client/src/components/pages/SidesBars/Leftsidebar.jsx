@@ -12,7 +12,7 @@ export default class Leftsidebar extends Component {
     this.state={
       id:'',
       name:'',
-      avater:''
+      photo:''
     }
     this.handleprofile= this.handleprofile.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
@@ -35,7 +35,7 @@ export default class Leftsidebar extends Component {
         this.props.history.push('/signin')
       } else {
        
-        this.setState({ name: user.name, avater: user.avater})
+        this.setState({ name: user.name, photo: user.photo})
 
       }
     
@@ -47,6 +47,9 @@ export default class Leftsidebar extends Component {
     
   }
 
+  handleAlert(){
+    alert('Setting Ok to Modify click profile')
+  }
 
   async handleLogout() {
     await localStorage.removeItem("token");
@@ -62,7 +65,7 @@ export default class Leftsidebar extends Component {
 
 
   render() {
-    const {id ,name,avater}= this.state
+    const {id ,name,photo}= this.state
     const sidebarStyle = {
         leftsidbar :{
       marginTop: "0% !important",
@@ -113,23 +116,63 @@ export default class Leftsidebar extends Component {
     return (
       <div style={sidebarStyle.leftsidbar}>
         <div className="text-center">
-          <Link to={`/profile/${id}`} title="Your profile"><img src={avater} style={sidebarStyle.imgStyle} />
-         <h4>{name}</h4></Link>
-          <hr/>
+          <Link to={`/profile/${id}`} title="Your profile">
+            <img src={photo} style={sidebarStyle.imgStyle} />
+            <h4>{name}</h4>
+          </Link>
+          <hr />
         </div>
         <div>
           <ul className="list-group">
-                    <li className="list-group-item" style={sidebarStyle.listItem} >
+            <li className="list-group-item" style={sidebarStyle.listItem}>
               {" "}
-            
-              <Link to={`/profile/${id}`}  className="list-link" style={sidebarStyle.listLink} > <i className="fa fa-book "></i> Profile </Link>
+              <Link
+                to={`/profile/${id}`}
+                className="list-link"
+                style={sidebarStyle.listLink}
+              >
+                {" "}
+                <i className="fa fa-book "></i> Profile{" "}
+              </Link>
             </li>
-    
-            
-                    <li className="list-group-item" style={sidebarStyle.listItem} > <Link to="/addgraphic" className="list-link" style={sidebarStyle.listLink} ><i className="fa fa-camera"></i>Upload Graphics </Link> </li>
-                    <li className="list-group-item" style={sidebarStyle.listItem}><Link to="/graphics" className="list-link" style={sidebarStyle.listLink} > <i className="fa fa-road "></i> Graphics </Link> </li>
-            <li className="list-group-item" style={sidebarStyle.listItem}><a href="#" className="list-link" style={sidebarStyle.listLink} > <i className="fa fa-road "></i> Setting </a> </li>
-            <li className="list-group-item" style={sidebarStyle.listItem}><Link to="/" className="list-link" style={sidebarStyle.listLink} onClick= {this.handleLogout} > Logout </Link> </li>
+
+            <li className="list-group-item" style={sidebarStyle.listItem}>
+              {" "}
+              <Link
+                to={`addgraphic/${id}`}
+                className="list-link"
+                style={sidebarStyle.listLink}
+              >
+                <i className="fa fa-camera"></i>Upload Graphics{" "}
+              </Link>{" "}
+            </li>
+            <li className="list-group-item" style={sidebarStyle.listItem}>
+              <Link
+                to="/graphics"
+                className="list-link"
+                style={sidebarStyle.listLink}
+              >
+                {" "}
+                <i className="fa fa-road "></i> Graphics{" "}
+              </Link>{" "}
+            </li>
+            <li className="list-group-item" style={sidebarStyle.listItem}>
+              <a href="#" className="list-link" style={sidebarStyle.listLink} onClick={this.handleAlert.bind(this)}>
+                {" "}
+                <i className="fa fa-tool "></i> Setting{" "}
+              </a>{" "}
+            </li>
+            <li className="list-group-item" style={sidebarStyle.listItem}>
+              <Link
+                to="/"
+                className="list-link"
+                style={sidebarStyle.listLink}
+                onClick={this.handleLogout}
+              >
+                {" "}
+                Logout{" "}
+              </Link>{" "}
+            </li>
           </ul>
         </div>
       </div>

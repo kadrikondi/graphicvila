@@ -29,7 +29,7 @@ export default class dashboard extends Component {
   }
   async componentDidMount() {
     const token = await JSON.parse(localStorage.getItem("token"));
-    const id = await JSON.parse(localStorage.getItem("userId"));
+    const id = await localStorage.getItem("userId");
 
     fetch(`/user/${id}`, {
       headers: {
@@ -76,17 +76,17 @@ export default class dashboard extends Component {
               <LeftSidebar />
             </div>
 
-            <div className="col-lg-6 mt-5">
+            <div className="col-lg-9 mt-5">
               <Projects />
             </div>
 
-            <div
+            {/* <div
               className="col-lg-3 mt-5"
               style={{
                 position: "",
                 left: ""
               }}
-            ></div>
+            ></div> */}
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import axios from "axios";
 
 //allcenters
-export async function getAllproject() {
+export async function getAllGraphics() {
     try {
-        const projects = await axios.get("http://localhost:8090/projects");
+        const projects = await axios.get("http://localhost:3001/api/v1/graphics");
 
         return projects.data.info;
 
@@ -54,7 +54,7 @@ export async function userProfile(id) {
 //get single user
 export async function getSingleUser(id) {
     try {
-        const info = await axios.get(`/user/transact/${id}`)
+        const info = await axios.get(`/api/v1/user/${id}`)
         return info.data
     } catch (error) {
         return error.message

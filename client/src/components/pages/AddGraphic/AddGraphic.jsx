@@ -26,6 +26,7 @@ class AddGraphic extends Component {
 
   async handlePost(e) {
     e.preventDefault()
+    this.setState({isLoading:true})
     let id = await window.localStorage.getItem("userId")
     const formdata = new FormData();
     formdata.append("photo", this.state.photo);
@@ -34,30 +35,28 @@ class AddGraphic extends Component {
     formdata.append("ideaname", this.state.ideaname);
 
     axios.post(`/api/v1/graphic/post/${id}`, formdata)
-    .then( res => { console.log(res)})
-    .catch(err => console.log(err.message))
-    // fetch(`http://localhost:3001/api/v1/graphic/post/${id}`, {
-    //   method: "POST",
-    //   // mode: "no-cors",
-    //   headers: {
-    //     Accept: "application/json"
-    //     // "Content-Type": "multipart/form-data"
-    //   },
-    //   body: formdata
-    // })
-    //   .then(response => {
-    //     // alert(response.data);
-    //     console.log(response);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     //this.setState({error: true})
-    //   });
+    // .then( res => { console.log(res)})
+    // .catch(err => console.log(err.message))
+    
+      .then(res => {
+           this.setState({ isLoading: false });
+        if(res.status===200){
+        alert(res.data.message);
+
+        console.log(res);
+        this.props.history.push('/graphics')
+        }
+      })
+      .catch(err => {
+           this.setState({ isLoading: false });
+        console.log(err);
+        //this.setState({error: true})
+      });
   }
-  handleProject(e) {
-    e.preventDefault();
-    this.handlePost(this.props.match.params.id);
-  }
+  // handleProject(e) {
+  //   e.preventDefault();
+  //   this.handlePost(this.props.match.params.id);
+  // }
 
   handleCaption(e) {
     this.setState({ caption: e.target.value });
@@ -82,6 +81,9 @@ class AddGraphic extends Component {
   }
 
   render() {
+     const Btn = {
+       width:'100%'
+     };
     const { name, ideaname, caption, file } = this.state;
     if (this.state.error) {
       return <h1>Something went wrong, please try again.</h1>;
@@ -117,6 +119,17 @@ class AddGraphic extends Component {
 
                 <div className="card-body px-lg-5 pt-0  ">
                   {/* <!--Body--> */}
+
+                  <div className="form-group">
+                    <p>Select file design to upload </p>
+
+                    <input
+                      type="file"
+                      name="photo"
+                      className="form-control"
+                      onChange={this.handleFile}
+                    />
+                  </div>
                   <div className="form-group mt-3">
                     <input
                       type="text"
@@ -156,17 +169,6 @@ class AddGraphic extends Component {
                     />
                   </div>
 
-                  <div className="form-group">
-                    <p>Select file design to upload </p>
-
-                    <input
-                      type="file"
-                      name="file"
-                      className="form-control"
-                      onChange={this.handleFile}
-                    />
-                  </div>
-
                   <div className="text-center">
                     {this.state.isLoading === true ? (
                       (document.getElementById("btnaddProject").style.display =
@@ -174,10 +176,11 @@ class AddGraphic extends Component {
                     ) : (
                       <button
                         id="drop"
+                        style={Btn}
                         type="button"
                         id="btnaddProject"
-                        className="btn primary-btn mdi mdi-cloud-upload mt-"
-                        onClick={this.handleProject.bind(this)}
+                        className="btn primary-btn btn-primary mdi-cloud-upload mt-"
+                        onClick={this.handlePost.bind(this)}
                       >
                         {" "}
                         &nbsp; Upload
