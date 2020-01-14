@@ -13,10 +13,14 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 //static decl
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 //production mode
-if(process.env.NODE_ENV === 'production') {  app.use(express.static(path.join(__dirname, 'client/build')));  
-  app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = 'client/build/index.html'));  })}
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.get('*', (req, res) => {
+        res.sendfile(path.join(__dirname = '../client/build/index.html'));
+    })
+}
 
 //   //build mode
 //   app.get('*', (req, res) => {  res.sendFile(path.join(__dirname+'../client/public/index.html'));})
@@ -24,7 +28,7 @@ app.use('/', routes)
 const port = 3001 || process.env.PORT
 
 app.listen(port, () => {
-//happy
+    //happy
 
     if (process.env.NODE_ENV === 'production') {
         mongoose.connect('mongodb+srv://yakubebank:kadzee222.@cluster0-opegc.mongodb.net/test?retryWrites=true&w=majority', {
@@ -38,10 +42,10 @@ app.listen(port, () => {
                 console.log(err)
             })
     } else {
-       mongoose.connect('mongodb://localhost:27017/Graphicvila', {
-           useNewUrlParser: true,
-           useUnifiedTopology: true
-       }).then(() => {
+        mongoose.connect('mongodb://localhost:27017/Graphicvila', {
+                useNewUrlParser: true,
+                useUnifiedTopology: true
+            }).then(() => {
 
                 console.log("mongodb connected offline")
             })
