@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import Img1 from '../asset/img/p1.jpg'
-import Img2 from '../asset/img/p2.jpg'
-import Img3 from '../asset/img/p3.jpg'
-import Img4 from '../asset/img/p4.jpg'
-import Img5 from '../asset/img/p5.jpg'
-import Img6 from '../asset/img/p6.jpg'
+import Img2 from '../asset/img/8.jpg'
+import Img3 from '../asset/img/s.jpg'
+import Img4 from '../asset/img/m.jpg'
+import Img5 from '../asset/img/b.jpg'
+import Img6 from '../asset/img/silbver.jpg'
 import Hero from '../asset/img/hero-img.png'
 import Landi from '../asset/img/book.jpg'
 import   {Link} from 'react-router-dom'
@@ -39,6 +39,10 @@ export class landingpage extends Component {
               influential brands and
               digital experiences.
               </h3>
+              <br/>
+             
+              <h4 className="text-uppercase">Upload Designs, Share Designs And Meet Designers</h4>
+               <br/>
               <a href="/signin" className="primary-btn text-uppercase">discover now</a>
             </div>
             <div className="col-lg-6 col-md-6 banner-right d-flex align-self-end mb-5">
@@ -58,12 +62,12 @@ export class landingpage extends Component {
           <div className="row d-flex justify-content-center">
             <div className="menu-content pb-70 col-lg-8">
               <div className="title text-center">
-                <h1 className="mb-10">Our Latest Designs </h1>
+                <h1 className="mb-10">GRAPHICVILA DESIGNS </h1>
                
               </div>
             </div>
           </div>
-          <div className="filters">
+          {/* <div className="filters">
             <ul>
               <li className="active" data-filter="*">All</li>
               <li data-filter=".vector">Vector</li>
@@ -71,7 +75,7 @@ export class landingpage extends Component {
               <li data-filter=".ui">UI/UX</li>
               <li data-filter=".printing">Printing</li>
             </ul>
-          </div>
+          </div> */}
           <div className="filters-content">
             <div className="row grid">
               <div className="single-portfolio col-sm-4 all vector">
@@ -80,9 +84,9 @@ export class landingpage extends Component {
                     <div className="overlay overlay-bg" />
                     <img className="image img-fluid" src={Img1} alt="" />
                   </div>
-                  <a href="img/p1.jpg" className="img-pop-up">	
+                  <a href="/signin" className="img-pop-up">	
                     <div className="middle">
-                      <div className="text align-self-center d-flex">good</div>
+                      <div className="text align-self-center d-flex"> <span>GraphicsVila Design</span></div>
                     </div>
                   </a>                              		
                 </div>
@@ -99,12 +103,12 @@ export class landingpage extends Component {
                   </div>
                   <a href="img/p2.jpg" className="img-pop-up">	
                     <div className="middle">
-                      <div className="text align-self-center d-flex">weldone</div>
+                      <div className="text align-self-center d-flex"><span>GraphicsVila Design</span></div>
                     </div>
                   </a>                              		
                 </div>
                 <div className="p-inner">
-                  <h4>2D Vinyl Design</h4>
+                  <h4>3d Hand Design</h4>
                   <div className="cat">vector</div>
                 </div>					                               
               </div>                            
@@ -116,7 +120,7 @@ export class landingpage extends Component {
                   </div>
                   <a href="img/p3.jpg" className="img-pop-up">	
                     <div className="middle">
-                      <div className="text align-self-center d-flex"><img src="img/preview.png" alt="" /></div>
+                      <div className="text align-self-center d-flex"><span>GraphicsVila Design</span></div>
                     </div>
                   </a> 
                 </div>
@@ -133,7 +137,7 @@ export class landingpage extends Component {
                   </div>
                   <a href="img/p4.jpg" className="img-pop-up">	
                     <div className="middle">
-                      <div className="text align-self-center d-flex"><img src="img/preview.png" alt="" /></div>
+                      <div className="text align-self-center d-flex"><span>GraphicsVila Design</span></div>
                     </div>
                   </a>                            		
                 </div> 
@@ -150,7 +154,7 @@ export class landingpage extends Component {
                   </div>
                   <a href="img/p5.jpg" className="img-pop-up">	
                     <div className="middle">
-                      <div className="text align-self-center d-flex"><img src="img/preview.png" alt="" /></div>
+                      <div className="text align-self-center d-flex"><span>GraphicsVila Design</span></div>
                     </div>
                   </a>                             		
                 </div>
@@ -167,12 +171,12 @@ export class landingpage extends Component {
                   </div>
                   <a href="" className="img-pop-up">	
                     <div className="middle">
-                      <div className="text align-self-center d-flex"><img src="img/preview.png" alt="" /></div>
+                      <div className="text align-self-center d-flex"><span>GraphicsVila Design</span></div>
                     </div>
                   </a>                             		
                 </div>
                 <div className="p-inner">
-                  <h4>2D Vinyl Design</h4>
+                  <h4>Computer Design</h4>
                   <div className="cat">raster</div>
                 </div>
               </div>

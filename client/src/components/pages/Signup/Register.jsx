@@ -71,7 +71,8 @@ class Register extends Component {
       })
       .catch(err => {
         console.log(err);
-        this.setState({ isLoading: false });
+
+        this.setState({ isLoading: false,info:err.message });
       });
   }
   
