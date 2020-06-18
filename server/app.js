@@ -7,9 +7,9 @@ const routes = require('./routes/index')
 const path = require('path');
 
 const PORT = process.env.PORT ||  3001
-// mongoose.connect('mongodb+srv://yakubebank:kadzee222.@cluster0-opegc.mongodb.net/test?retryWrites=true&w=majority', {
-//     useNewUrlParser: true
-// })
+mongoose.connect('mongodb+srv://yakubebank:kadzee222.@cluster0-opegc.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true
+})
 
 //app.use(cors())
 app.use(bodyParser.json())
