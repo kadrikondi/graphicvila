@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import Img1 from '../asset/img/p1.jpg'
 import Img2 from '../asset/img/8.jpg'
-import Img3 from '../asset/img/s.jpg'
-import Img4 from '../asset/img/m.jpg'
-import Img5 from '../asset/img/b.jpg'
+import Img3 from '../asset/img/5.jpg'
+import Img4 from '../asset/img/b1.jpg'
+import Img5 from '../asset/img/b3.jpg'
 import Img6 from '../asset/img/silbver.jpg'
-import Hero from '../asset/img/hero-img.png'
+//import Hero from '../asset/img/hero-img.png'
 import Landi from '../asset/img/book.jpg'
-import   {Link} from 'react-router-dom'
-import Customerheader from './dashboard/customerheader';
+// import   {Link} from 'react-router-dom'
+// import Customerheader from './dashboard/customerheader';
 
 
 
