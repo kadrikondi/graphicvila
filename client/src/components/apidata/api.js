@@ -3,7 +3,7 @@ import axios from "axios";
 //allcenters
 export async function getAllGraphics() {
     try {
-        const projects = await axios.get("http://localhost:3001/api/v1/graphics");
+        const projects = await axios.get("/api/v1/graphics");
 
         return projects.data.info;
 
@@ -16,7 +16,7 @@ export async function getAllGraphics() {
 export async function getSingleProjectA(id) {
     try {
         const token = await JSON.parse(localStorage.getItem("token"));
-        const project = await axios.get(`http://localhost:8090/project/${id}`);
+        const project = await axios.get(`/project/${id}`);
         console.log(project)
         return project.data.info;
         // console.log(project.data)
@@ -29,7 +29,7 @@ export async function getSingleProjectA(id) {
 export async function getUserData(id) {
     try {
         const token = await JSON.parse(localStorage.getItem("token"));
-        const info = await axios.get(`user/${id}`, {
+        const info = await axios.get(`/user/${id}`, {
             headers: {
                 Authorization: token
             }
