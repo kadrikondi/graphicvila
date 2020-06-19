@@ -6,6 +6,7 @@ import Projects from "../listGraphics/graphics";
 import LeftSidebar from "../SidesBars/Leftsidebar";
 
 import { userProfile } from "../../apidata/api";
+import Header from '../../layout/header/Header'
 
 export default class dashboard extends Component {
   constructor() {
@@ -67,6 +68,7 @@ export default class dashboard extends Component {
           Welcome {name} much{" "}
           <span style={{ color: "red", fontSize: "20px" }}>&hearts;</span>
         </div> */}
+        <Header />
         <div className="container ">
           <div className="row  ">
             <div className="col-lg-3 mt-5" style={{}}>

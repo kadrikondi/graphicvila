@@ -11,23 +11,23 @@ export class VisitorNavbar extends Component {
           <div className="container main-menu">
             <div className="row align-items-center justify-content-between d-flex">
               <div id="logo">
-                <a href="index.html">
-                  <img src={Logo} alt="" title />
-                </a>
+                <Link to="/">
+                  <img src={Logo} alt="graphicvila" title />
+                </Link>
               </div>
               <nav id="nav-menu-container">
                 <ul className="nav-menu">
                   <li>
-                    <a href="/">Home</a>
+                    <Link to="/">Home</Link>
                   </li>
                   <li>
-                    <a href="/about">About</a>
+                    <Link to="/about">About</Link>
                   </li>
                   <li>
-                    <a href="/register">SignUp</a>
+                    <Link to="/register">SignUp</Link>
                   </li>
                   <li>
-                    <a href="/signin">SignIn</a>
+                    <Link to="/signin">SignIn</Link>
                   </li>
                 </ul>
               </nav>

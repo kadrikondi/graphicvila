@@ -5,6 +5,7 @@ import "../../asset/css/smalloader.css";
 import axios from "axios";
 import Leftsidebar from "../SidesBars/Leftsidebar";
 import { Link } from "react-router-dom";
+import Header from '../../layout/header'
 
 class AddGraphic extends Component {
   constructor() {
@@ -91,6 +92,7 @@ class AddGraphic extends Component {
     return (
       <div>
         {/* <UserHeader/> */}
+        <Header />
         <div className="container">
           <div className="row">
             <div className="col-lg-3 mt-5">

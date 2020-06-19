@@ -16,32 +16,14 @@ export class routes extends Component {
     return (
       <div>
         <Switch>
-          
-           <Route path="/register"  strict exact={true} component={Register}/>
-          
-                 <Route path="/dash"  strict exact={true} component={UserDashboard}/>
           <Route path="/"  strict exact={true} component={LandingPage}/>
-          
+          <Route path="/register"  strict exact={true} component={Register}/>
+          <Route path="/dash"  strict exact={true} component={UserDashboard}/>
           <Route path="/change/profile/:id"  strict exact={true} component={UpdateProfile}/>
-         
           <Route path="/signin" strict exact={true} component={Signin}/>
-          
           <Route path="/profile/:id" strict exact={true}  component={customerProfile}/>
-           
-
-
-           //graphics
-           < Route path = "/addgraphic/:id"
-           strict exact = {
-             true
-           }
-           component = {
-             AddGraphic
-           }
-           />
-          
-             <Route path ="/graphics" strict exact={true} component={AllGraphic}/>
-            
+          <Route path = "/addgraphic/:id" strict exact = { true }component = { AddGraphic}/>
+          <Route path ="/graphics" strict exact={true} component={AllGraphic}/> 
         </Switch>
       </div>
     )

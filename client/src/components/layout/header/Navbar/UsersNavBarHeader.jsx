@@ -64,7 +64,7 @@ export default class UsersNavBarHeader extends Component {
             fontWeight: "bold"
           }}
         >
-        <img src={Logo} alt=""/>
+        <img src={Logo} alt="graphicvila"/>
         </a>
         <button
           className="navbar-toggler"

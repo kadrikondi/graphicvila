@@ -9,7 +9,7 @@ import Img6 from '../asset/img/silbver.jpg'
 import Landi from '../asset/img/book.jpg'
 // import   {Link} from 'react-router-dom'
 // import Customerheader from './dashboard/customerheader';
-
+import Header from '../layout/header/Header'
 
 
 export class landingpage extends Component {
@@ -25,7 +25,7 @@ export class landingpage extends Component {
       <div>
         {/* <Customerheader/> */}
          {/* Hero section */}
-     
+     <Header />
      {/* start banner Area */}
       <section className="banner-area">
         <div className="container">
