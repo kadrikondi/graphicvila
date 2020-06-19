@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Signin.css";
 import "../../asset/css/loader.css";
-
+import Header from '../../layout/header/Header'
 import { Link } from "react-router-dom";
 
 class Signin extends Component {
@@ -79,6 +79,7 @@ class Signin extends Component {
  }
     return (
       <div>
+        <Header style={{marginBottom: '15px'}}/>
         {/* /login */}
         <div className="container">
 

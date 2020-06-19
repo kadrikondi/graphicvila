@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {Link} from 'react-router-dom'
-
+import Header from '../../layout/header/Header'
 import axios from 'axios';
 
 // import  '../../assets/style.css'
@@ -73,18 +73,17 @@ class Graphics extends Component{
  
 
     render(){
-
- const allgraphics =this.state.allgraphics.filter((graphic)=>{
-   let search= this.state.searchText
-   return graphic.name.toLowerCase().search(this.state.searchText.toLowerCase()) !== -1;
-  //  indexOf(this.state.searchText.toLowerCase())!==-1;
+    const allgraphics =this.state.allgraphics.filter((graphic)=>{
+      let search= this.state.searchText
+      return graphic.name.toLowerCase().search(this.state.searchText.toLowerCase()) !== -1;
+      //  indexOf(this.state.searchText.toLowerCase())!==-1;
    
- })
+    })
  const {token, id }= this.state
 return (
   <div>
     {/* {this.state.token ? <UserHeader/>:<div></div>} */}
-
+    <Header style={{marginBottom: '15px'}}/>
     <div className="contaner ">
       {/* {<Search /> } */}
 

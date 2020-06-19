@@ -6,46 +6,36 @@ import "./Header.css";
 
 
 export default class Header extends Component {
+  constructor() {
+    super()
+    this.state = {
+      token: false
+    }
+  }
 
-  componentWillMount(){
-    
-
+componentWillMount(){
   const token = window.localStorage.getItem("token");
-  if (token) {
-    return (
-      <div>
-        <UserNavBar />
-      </div>
-    );
-  }else{
-    return (
-      <div className="App-header h">
-        <VisitorNavbar />
-      </div>
-    );
+  if(token) {
+    this.setState({ token: true})
   }
+  // if (token) {
+  //   return (
+  //     <div>
+  //       <UserNavBar />
+  //     </div>
+  //   );
+  // }else{
+  //   return (
+  //     <div className="App-header h">
+  //       <VisitorNavbar />
+  //     </div>
+  //   );
+  // }
   
 }
-async componentWillUpdate(){
-  
-  const token =  await window.localStorage.getItem("token");
-  if (token) {
-    return (
-      <div>
-        <UserNavBar />
-      </div>
-    );
-  } else {
-    return (
-      <div className="App-header h">
-        <VisitorNavbar />
-      </div>
-    );
-  }
-}
+
   render() {
-    const token = window.localStorage.getItem("token");
-    if (token) {
+    if (this.state.token === true) {
       return (
         <div>
           <UserNavBar />
@@ -53,10 +43,9 @@ async componentWillUpdate(){
       );
     }
     return (
-    
-       <div className="App-header h">
-      <VisitorNavbar />
-    </div> 
+      <div className="App-header h">
+        <VisitorNavbar />
+      </div> 
       
     )
   }

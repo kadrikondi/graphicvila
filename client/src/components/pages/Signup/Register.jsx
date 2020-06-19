@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../../asset/css/loader.css";
 import "./Signup.css";
-
 import axios from "axios";
+import Header from '../../layout/header/Header'
+
 class Register extends Component {
   constructor() {
     super();
@@ -16,17 +17,14 @@ class Register extends Component {
       password1:"",
       phone: "",
       bdate: "",
-     
       address: "",
-     
-     
       info: "",
      
       isLoading: false,
     };
     this.handleName = this.handleName.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
-       this.handlePassword1 = this.handlePassword1.bind(this);
+    this.handlePassword1 = this.handlePassword1.bind(this);
     this.handleGender = this.handleGender.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
    
@@ -118,6 +116,7 @@ class Register extends Component {
 
     return (
       <div>
+        <Header style={{marginBottom: '15px'}}/>
         {/* <!--Form with header--> */}
         <div className="card mt-5" id="signup" style={Sty}>
           <div className="card-body">
