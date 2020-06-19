@@ -38,7 +38,7 @@ class Register extends Component {
   async handleSubmit(e) {
     e.preventDefault();
     console.log(this.state.password)
-    if(this.state.password!==this.state.password1){
+    if(this.state.password !== this.state.password1){
       this.setState({info:'password not match type same password'})
     }
     await this.setState({ isLoading: true });
